@@ -1260,10 +1260,6 @@ void s1945_state::s1945(machine_config &config)
 	m_audiocpu->set_addrmap(AS_PROGRAM, &s1945_state::gunbird_sound_map);
 	m_audiocpu->set_addrmap(AS_IO, &s1945_state::s1945_sound_io_map);
 
-	/* Dumped by decapping on a Tengai PCB (and there's one weirdly sized dump available from a Korean version of Strikers 1945).
-	   TODO: verify it's good and hook it up. Verify if the same PIC dump works also on clones. */
-	PIC16C57(config, "mcu", 4_MHz_XTAL).set_disable();
-
 	/* video hardware */
 	SCREEN(config, m_screen, SCREEN_TYPE_RASTER);
 	m_screen->set_raw(14.318181_MHz_XTAL / 2, 456, 0, 320, 262, 0, 224);  // Approximately 59.923Hz, 38 Lines in VBlank
@@ -1889,14 +1885,6 @@ ROM_START( tengai )
 	ROM_REGION( 0x020000, "audiocpu", 0 )       // Sound CPU Code
 	ROM_LOAD( "1-u63.bin", 0x00000, 0x20000, CRC(2025e387) SHA1(334b0eb3b416d46ccaadff3eee6f1abba63285fb) )
 
-	ROM_REGION( 0x001000, "mcu", 0 )       // MCU, not hooked up
-	/* PIC configuration:
-	     -User ID: 37EA
-	     -Watchdog Timer: unknown - tested on PCB: both settings work
-	     -Oscillator Mode: probably XT (unconfirmed) - tested on PCB: HS and XT work, LP and RC don't
-	*/
-	ROM_LOAD( "4.u59", 0x00000, 0x01000, CRC(e563b054) SHA1(7593389d35851a71a8af2e094ec7e55cd818743a) )
-
 	ROM_REGION( 0x600000, "sprites", 0 )   // Sprites
 	ROM_LOAD( "u20.bin",  0x000000, 0x200000, CRC(ed42ef73) SHA1(74693fcc83a2654ddb18fd513d528033863d6116) )
 	ROM_LOAD( "u22.bin",  0x200000, 0x200000, CRC(8d21caee) SHA1(2a68af8b2be2158dcb152c434e91a75871478d41) )
@@ -1920,14 +1908,6 @@ ROM_START( tengaij )
 
 	ROM_REGION( 0x020000, "audiocpu", 0 )       // Sound CPU Code
 	ROM_LOAD( "1-u63.bin", 0x00000, 0x20000, CRC(2025e387) SHA1(334b0eb3b416d46ccaadff3eee6f1abba63285fb) )
-
-	ROM_REGION( 0x001000, "mcu", 0 )       // MCU, not hooked up
-	/* PIC configuration:
-	     -User ID: 37EA
-	     -Watchdog Timer: unknown - tested on PCB: both settings work
-	     -Oscillator Mode: probably XT (unconfirmed) - tested on PCB: HS and XT work, LP and RC don't
-	*/
-	ROM_LOAD( "4.u59", 0x00000, 0x01000, CRC(e563b054) SHA1(7593389d35851a71a8af2e094ec7e55cd818743a) ) // From a World PCB
 
 	ROM_REGION( 0x600000, "sprites", 0 )   // Sprites
 	ROM_LOAD( "u20.bin",  0x000000, 0x200000, CRC(ed42ef73) SHA1(74693fcc83a2654ddb18fd513d528033863d6116) )
