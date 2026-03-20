@@ -99,3 +99,17 @@ is required to use the "MAME" name, logo, or wordmark.
     more details.
 
 Please see [COPYING](COPYING) for more details.
+
+add by hao :
+setup  , please read mame_wasm_build_guide.md
+1.环境：我的wasm在 /opt/work/emsdk
+cd emsdk
+./emsdk install 3.1.50
+./emsdk activate 3.1.50
+source ./emsdk_env.sh
+
+2.项目路径：/opt/work/mame
+
+3.需求：
+emmake make SUBTARGET=psikyo SOURCES=src/mame/psikyo/psikyo.cpp
+
